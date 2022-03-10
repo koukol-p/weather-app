@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Forecast from "./components/Forecast";
 import { Box } from "@chakra-ui/react";
+import Form from "./components/Form";
 
 function App() {
   const [weather, setWeather] = useState([]);
@@ -35,8 +36,9 @@ function App() {
     //   });
   }, []);
   return (
-    <Box bgColor="gray.800" minH="100vh" padding={12}>
+    <Box bgColor="gray.800" minH="100vh" padding={12} color="whitesmoke">
       <header className="App-header">Weather App</header>
+      <Form />
       {isLoading ? "Loading" : <Forecast weather={weather} />}
     </Box>
   );
