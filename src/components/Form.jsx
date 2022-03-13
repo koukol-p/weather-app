@@ -10,12 +10,26 @@ import {
   Box,
   Flex,
 } from "@chakra-ui/react";
-const Form = (props) => {
+const Form = ({ getWeather, getWeatherByCityName }) => {
   const [selectionType, setSelectionType] = useState("selectByCity");
 
   const [cityName, setCityName] = useState("");
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    switch (selectionType) {
+      case "selectByCity":
+        getWeatherByCityName(cityName);
+        break;
+      case "selectByLatLon":
+        getWeather(latitude, longitude);
+        break;
+      default:
+        return;
+    }
+  };
 
   const fields =
     selectionType === "selectByCity" ? (
@@ -51,7 +65,7 @@ const Form = (props) => {
       </>
     );
   return (
-    <Box as="form" minH={260} marginY={4}>
+    <Box as="form" minH={260} marginY={4} onSubmit={handleSubmit}>
       <FormControl as="fieldset">
         <FormLabel>Search by</FormLabel>
         <RadioGroup
@@ -69,7 +83,7 @@ const Form = (props) => {
         {fields}
       </Flex>
 
-      <Button color="black" bgColor="gray.200">
+      <Button type="submit" color="black" bgColor="gray.200">
         Get Weather
       </Button>
     </Box>
