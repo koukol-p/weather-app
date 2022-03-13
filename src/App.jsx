@@ -3,7 +3,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Forecast from "./components/Forecast";
-import { Box } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import Form from "./components/Form";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
         `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
       )
       .then((res) => {
-        setWeather(res.data.daily);
+        setWeather(res.data);
         setIsLoading(false);
         console.log(res.data);
       });
@@ -40,14 +40,25 @@ function App() {
     //   // --
     // });
   }, []);
+
   return (
-    <Box bgColor="gray.800" minH="100vh" padding={12} color="whitesmoke">
-      <header className="App-header">Weather App</header>
+    <Box
+      bgColor="gray.800"
+      minH="100vh"
+      paddingX={12}
+      paddingY={6}
+      color="whitesmoke"
+    >
+      <Heading marginBottom={2}>Weather App</Heading>
       <Form
         getWeather={getWeather}
         getWeatherByCityName={getWeatherByCityName}
       />
-      {isLoading ? "Loading" : <Forecast weather={weather} />}
+      {isLoading ? (
+        "Loading"
+      ) : (
+        <Forecast timezone={weather.timezone} weather={weather.daily} />
+      )}
     </Box>
   );
 }

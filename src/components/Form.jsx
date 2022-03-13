@@ -29,6 +29,9 @@ const Form = ({ getWeather, getWeatherByCityName }) => {
       default:
         return;
     }
+    setCityName("");
+    setLatitude("");
+    setLongitude("");
   };
 
   const fields =

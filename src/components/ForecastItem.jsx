@@ -5,6 +5,7 @@ const ForecastItem = ({ data }) => {
   const date = new Date(data.dt * 1000);
   return (
     <Box
+      flex={1}
       bgColor="gray.600"
       minW={210}
       minH={240}
