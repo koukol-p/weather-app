@@ -1,14 +1,30 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Forecast from "./components/Forecast";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Flex } from "@chakra-ui/react";
 import Form from "./components/Form";
+import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
   const [weather, setWeather] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { theme, currentTheme, toggleTheme } = useContext(ThemeContext);
+
+  const handleToggleTheme = () => {
+    switch (currentTheme) {
+      case "light":
+        toggleTheme("dark");
+        break;
+      case "dark":
+        toggleTheme("light");
+        break;
+      default:
+        return;
+    }
+  };
   const getWeatherByCityName = (city) => {
     axios
       .get(
@@ -43,13 +59,18 @@ function App() {
 
   return (
     <Box
-      bgColor="gray.800"
+      bgColor={theme.bgColor}
       minH="100vh"
       paddingX={12}
       paddingY={6}
-      color="whitesmoke"
+      color={theme.textColor}
     >
-      <Heading marginBottom={2}>Weather App</Heading>
+      <Flex direction="row" justifyContent="space-between" alignItems="center">
+        <Heading marginBottom={2}>Weather App</Heading>
+        <Box cursor="pointer" onClick={handleToggleTheme}>
+          {currentTheme === "light" ? "Dark Theme" : "Light Theme"}
+        </Box>
+      </Flex>
       <Form
         getWeather={getWeather}
         getWeatherByCityName={getWeatherByCityName}

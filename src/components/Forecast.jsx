@@ -1,9 +1,11 @@
 import { Flex, Heading } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 import ForecastItem from "./ForecastItem";
 
 const Forecast = ({ weather, timezone }) => {
   console.log(weather);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <>
@@ -13,7 +15,7 @@ const Forecast = ({ weather, timezone }) => {
       <Flex
         direction={{ base: "column", xl: "row" }}
         wrap="wrap"
-        bgColor="gray.700"
+        bgColor={theme.backdrop}
         padding={4}
         justifyContent="stretch"
       >

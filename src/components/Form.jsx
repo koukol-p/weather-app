@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Button,
   HStack,
@@ -10,12 +10,16 @@ import {
   Box,
   Flex,
 } from "@chakra-ui/react";
+import { ThemeContext } from "../context/ThemeContext";
+
 const Form = ({ getWeather, getWeatherByCityName }) => {
   const [selectionType, setSelectionType] = useState("selectByCity");
 
   const [cityName, setCityName] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+
+  const { theme } = useContext(ThemeContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,6 +47,8 @@ const Form = ({ getWeather, getWeatherByCityName }) => {
           value={cityName}
           id="city"
           type="text"
+          borderColor={theme.textColor}
+          bgColor={theme.fieldColor}
         />
       </FormControl>
     ) : (
@@ -54,21 +60,34 @@ const Form = ({ getWeather, getWeatherByCityName }) => {
             value={latitude}
             id="latitude"
             type="number"
+            borderColor={theme.textColor}
+            bgColor={theme.fieldColor}
           />
         </FormControl>
         <FormControl>
           <FormLabel htmlFor="longitude">Longitude</FormLabel>
           <Input
+            borderColor={theme.textColor}
             onInput={(e) => setLongitude(e.target.value)}
             value={longitude}
             id="longitude"
             type="number"
+            bgColor={theme.fieldColor}
           />
         </FormControl>
       </>
     );
   return (
-    <Box as="form" minH={260} marginY={4} onSubmit={handleSubmit}>
+    <Box
+      bgColor={theme.backdrop}
+      padding={3}
+      borderColor={theme.textColor}
+      borderWidth="1px"
+      as="form"
+      minH={260}
+      marginY={4}
+      onSubmit={handleSubmit}
+    >
       <FormControl as="fieldset">
         <FormLabel>Search by</FormLabel>
         <RadioGroup
