@@ -1,7 +1,10 @@
 {
-  "short_name": "Weather App",
-  "name": "Weather App",
-
-  "start_url": ".",
-  "display": "standalone"
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "icons": [],
+  "start_url": "/",
+  "homepage": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }
