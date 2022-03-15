@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Text, Divider } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
@@ -13,7 +13,6 @@ const ForecastItem = ({ data }) => {
       flex={1}
       bgColor={theme.cardColor}
       minW={210}
-      minH={240}
       border={`1px solid black`}
       marginX={1}
       marginY={0.5}
@@ -40,12 +39,41 @@ const ForecastItem = ({ data }) => {
         color={theme.textColor}
       >
         <Flex justifyContent={"space-between"}>
-          <Text fontWeight="medium">Max. Temperature:</Text>
-          <Text>{data.temp.max}°C</Text>
+          <Text fontWeight="medium">Max. temperature:</Text>
+          <Text>
+            <Text as="span" display="inline" fontWeight="medium">
+              {data.temp.max}
+            </Text>
+            °C
+          </Text>
         </Flex>
         <Flex justifyContent={"space-between"}>
-          <Text fontWeight="medium">Min. Temperature:</Text>
-          <Text>{data.temp.min}°C</Text>
+          <Text fontWeight="medium">Min. temperature:</Text>
+          <Text>
+            <Text as="span" display="inline" fontWeight="medium">
+              {data.temp.min}
+            </Text>
+            °C
+          </Text>
+        </Flex>
+        <Divider orientation="horizontal" marginY={2} />
+        <Flex justifyContent={"space-between"}>
+          <Text fontWeight="medium">Humidity:</Text>
+          <Text>
+            <Text as="span" display="inline" fontWeight="medium">
+              {data.humidity}
+            </Text>
+            %
+          </Text>
+        </Flex>
+        <Flex justifyContent={"space-between"}>
+          <Text fontWeight="medium">Wind speed:</Text>
+          <Text>
+            <Text as="span" display="inline" fontWeight="medium">
+              {data.wind_speed}
+            </Text>
+            m/s
+          </Text>
         </Flex>
       </Flex>
     </Box>
