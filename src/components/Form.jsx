@@ -95,10 +95,10 @@ const Form = ({ getWeather, getWeatherByCityName }) => {
           onChange={setSelectionType}
           value={selectionType}
         >
-          <HStack>
+          <Flex flexDir="column">
             <Radio value="selectByCity">City name</Radio>
             <Radio value="selectByLatLon">Latitude/Longitude</Radio>
-          </HStack>
+          </Flex>
         </RadioGroup>
       </FormControl>
       <Flex direction="column" minH={180}>

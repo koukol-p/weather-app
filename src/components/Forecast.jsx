@@ -3,14 +3,14 @@ import React, { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import ForecastItem from "./ForecastItem";
 
-const Forecast = ({ weather, timezone }) => {
+const Forecast = ({ weather, city }) => {
   console.log(weather);
   const { theme } = useContext(ThemeContext);
 
   return (
     <>
       <Heading marginY={2} size="md">
-        {timezone}
+        {city}
       </Heading>
       <Flex
         direction={{ base: "column", xl: "row" }}

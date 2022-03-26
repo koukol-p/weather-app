@@ -12,8 +12,8 @@ const themeReducer = (state, action) => {
 };
 export const ThemeProvider = ({ children }) => {
   const [state, dispatch] = useReducer(themeReducer, {
-    currentTheme: "light",
-    theme: lightTheme,
+    currentTheme: "dark",
+    theme: darkTheme,
   });
 
   const toggleTheme = (theme) => {

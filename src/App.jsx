@@ -9,6 +9,7 @@ import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
   const [weather, setWeather] = useState([]);
+  const [cityName, setCityName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const { theme, currentTheme, toggleTheme } = useContext(ThemeContext);
@@ -31,6 +32,8 @@ function App() {
         `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`
       )
       .then((res) => {
+        console.log("GEOLOC API RESPONSE", res.data[0].name);
+        setCityName(res.data[0].name);
         const lat = res.data[0].lat;
         const lon = res.data[0].lon;
         getWeather(lat, lon);
@@ -86,11 +89,7 @@ function App() {
         getWeather={getWeather}
         getWeatherByCityName={getWeatherByCityName}
       />
-      {isLoading ? (
-        "Loading"
-      ) : (
-        <Forecast timezone={weather.timezone} weather={weather.daily} />
-      )}
+      {!isLoading && <Forecast city={cityName} weather={weather.daily} />}
     </Box>
   );
 }
