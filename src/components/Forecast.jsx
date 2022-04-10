@@ -1,4 +1,4 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Box, Divider, Flex, Heading } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import ForecastItem from "./ForecastItem";
@@ -8,22 +8,20 @@ const Forecast = ({ weather, city }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <>
-      <Heading marginY={2} size="md">
+    <Box bgColor={theme.backdrop} padding={4} >
+      <Heading size="lg" marginBottom={2} marginLeft={0.5}>
         {city}
       </Heading>
       <Flex
         direction={{ base: "column", xl: "row" }}
         wrap="wrap"
-        bgColor={theme.backdrop}
-        padding={4}
         justifyContent="stretch"
       >
         {weather.map((item) => (
           <ForecastItem key={item.dt} data={item} />
         ))}
       </Flex>
-    </>
+    </Box>
   );
 };
 export default Forecast;

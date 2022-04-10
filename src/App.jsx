@@ -50,18 +50,10 @@ function App() {
         console.log(res.data);
       });
   };
-  useEffect(() => {
-    // axios.get("http://localhost:3001/data").then((res) => {
-    //   // For testing purposes
-    //   console.log(res.data);
-    //   setWeather(res.data);
-    //   setIsLoading(false);
-    //   // --
-    // });
-  }, []);
 
   return (
     <Box
+      
       bgColor={theme.bgColor}
       minH="100vh"
       paddingX={12}

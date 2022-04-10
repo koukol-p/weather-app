@@ -79,6 +79,7 @@ const Form = ({ getWeather, getWeatherByCityName }) => {
     );
   return (
     <Box
+
       bgColor={theme.backdrop}
       padding={3}
       borderColor={theme.textColor}

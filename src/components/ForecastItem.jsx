@@ -8,12 +8,13 @@ const ForecastItem = ({ data }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <Box
+    <Flex
       color={theme.textColor}
       flex={1}
+      flexDir="column"
       bgColor={theme.cardColor}
       minW={210}
-      border={`1px solid black`}
+      paddingBottom={2}
       marginX={1}
       marginY={0.5}
     >
@@ -37,6 +38,7 @@ const ForecastItem = ({ data }) => {
         style={{ listStyle: "none" }}
         padding={2}
         color={theme.textColor}
+
       >
         <Flex justifyContent={"space-between"}>
           <Text fontWeight="medium">Max. temperature:</Text>
@@ -76,7 +78,7 @@ const ForecastItem = ({ data }) => {
           </Text>
         </Flex>
       </Flex>
-    </Box>
+    </Flex>
   );
 };
 export default ForecastItem;
